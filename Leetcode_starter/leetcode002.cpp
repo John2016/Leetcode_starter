@@ -1,6 +1,7 @@
 /**
  * 2019/9/10
- * 
+ * 将2个以链表形式存储的数字相加并得到链表
+ * 要点是链表结构的操作，指针与引用的使用
  * Definition for singly-linked list.
  * struct ListNode {
  *     int val;

@@ -1,6 +1,7 @@
 /*
+ * leetcode 005
  * 最长回文子串
- * 
+ * 要点是归纳出动态规划
  */
 
 class Solution {

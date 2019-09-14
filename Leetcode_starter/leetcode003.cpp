@@ -1,7 +1,10 @@
 /*
+ * leetcode 003
  * low time complexity and a little high space occupation
- * Yuan
- * 12th Sep 2019
+ * 找出字符串中最长无重复子串
+ * 要点是：1. 设计算法避免重复无意义的序列比对
+ *        2. 利用字符的有限性构造数组实现最快的字符比对
+ * 不同方法主要体现在“剪枝算法”与所设计数据结构的不同
  */
 
 #include <string>
