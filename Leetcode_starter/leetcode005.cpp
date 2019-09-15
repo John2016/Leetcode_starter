@@ -7,6 +7,7 @@
 class Solution {
 public:
     string longestPalindrome(string s) {
-        
+        int len = 
+        vector<vector<>>
     }
 };
