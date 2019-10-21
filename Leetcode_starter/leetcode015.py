@@ -4,6 +4,7 @@
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
+    ##def threeSum(self, nums):
         nums.sort()
 
         res = []
@@ -28,6 +29,17 @@ class Solution:
                     while nums[jj + 1] == nums[jj] and jj < kk:
                         jj += 1
                 else:
-                    res.append([nums[ii], nums[jj], nums[kk] ] )
+                    res.append( [ nums[ii], nums[jj], nums[kk] ] )
+                    jj += 1
+                    kk -= 1
+                    while jj < kk and nums[jj + 1] == nums[jj]:
+                        jj += 1
+                    while jj < kk and nums[kk - 1] == nums[kk]:
+                        kk -= 1
 
         return res
+
+
+if __name__ == '__main__':
+    s = Solution()
+    print(s.threeSum([-2,-1,0,1,2]))
