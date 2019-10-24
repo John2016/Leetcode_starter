@@ -16,8 +16,8 @@ class Solution:
             for jj in range(9):
                 if board[ii][jj] != '.':
                     num = int(board[ii][jj])
-                    box_id = ii//3 * 3 + jj//3
-                    if (row_map[ii][num] and col_map[jj][num] and box_map[box_id][num]):
+                    box_id = (ii//3) * 3 + jj//3
+                    if (row_map[ii][num] or col_map[jj][num] or box_map[box_id][num]):
                         return False
                     else:
                         row_map[ii][num] == True
