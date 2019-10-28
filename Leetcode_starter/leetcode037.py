@@ -10,34 +10,54 @@ class Solution:
 
         def is_available(row, col, box, num):
             box_index = (row // 3) * 3 + col//3
-            return not (rol_map[row][num] or col_map[col][num] or box_map[box_index][num])
+            return not (row_map[row][num] or col_map[col][num] or box_map[box_index][num])
 
         def insert_num(row, col, box, num):
-            rol_map[row][num] = True
+            row_map[row][num] = True
             col_map[col][num] = True
             box_map[box][num] = True
             board[row][col] = str(num)
 
 
-        def remove_num():
-            rol_map[row][num] = False
+        def remove_num(row, col, box, num):
+            row_map[row][num] = False
             col_map[col][num] = False
             box_map[box][num] = False
             board[row][col] = '.'
         
         def add_next(row, col):
-            if row ==9 and col ==9:
-                return
-            elif col < 9 and row == 9:
-                backtrack(col+1, row)
+            if row == 8 and col == 8:
+                nonlocal solved
+                solved = True
+            elif col == 8:
+                backtrack(row + 1, 0)
             else:
-                backtrack(col, row+1)
+                backtrack(row, col + 1)
 
-        def backtrack(rol, col):
-            if board[rol][col] == '.':
-                box_idx = (rol // 3) * 3 + (col // 3)
+
+        def backtrack(row=0, col=0):
+            if board[row][col] == '.':
+                box_idx = (row // 3) * 3 + (col // 3)
                 for num in range(1,10,1):
-                    if is_available(rol, col, box_idx, num):
-                        insert_num(rol, col, box_idx, num)
-            else
-                pass
+                    if is_available(row, col, box_idx, num):
+                        insert_num(row, col, box_idx, num) 
+                        add_next(row, col)
+                        if not solved:
+                            remove_num(row, col, box_id, num)            
+            else:
+                add_next(row, col)
+
+        row_map = [[False for _ in range(1,10) ] for _ in range(9)]
+        col_map = [[False for _ in range(1,10) ] for _ in range(9)]
+        box_map = [[False for _ in range(10)] for _ in range(9)]
+
+        for ii in range(9):
+            for jj in range(9):
+                box_id = (ii // 3) * 3 + (jj // 3)
+                if board[ii][jj] != '.':
+                    dd = int(board[ii][jj])
+                    insert_num(dd,ii,jj,box_id)
+        
+        solved = False
+        backtrack()
+
